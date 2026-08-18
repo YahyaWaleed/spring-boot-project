@@ -31,9 +31,13 @@ public class Project {
     @OneToMany(mappedBy = "project")
     private List<Employee> employees;
 
-    @ManyToOne
-    @JoinColumn(name = "project_id")
-    private Task task;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "manager_id", nullable = false)
+    private Employee manager;
+
+
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Task> tasks;
 
     public Project() {};
 
@@ -44,7 +48,6 @@ public class Project {
         this.startDate = startDate;
         this.endDate = endDate;
         this.employees = employees;
-        this.task = task;
     }
 
     public int getId() {
@@ -91,13 +94,6 @@ public class Project {
         this.employees = employees;
     }
 
-    public Task getTask() {
-        return task;
-    }
-
-    public void setTask(Task task) {
-        this.task = task;
-    }
 
     @Override
     public String toString() {
@@ -108,7 +104,6 @@ public class Project {
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
                 ", employees=" + employees +
-                ", task=" + task +
                 '}';
     }
 }

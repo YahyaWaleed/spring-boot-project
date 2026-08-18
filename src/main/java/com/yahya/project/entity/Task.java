@@ -32,8 +32,17 @@ public class Task {
     @Column(name = "project_id")
     private int projectId;
 
-    @OneToMany
-    private List<Task> task;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "employee_task",
+            joinColumns = @JoinColumn(name = "task_id"),
+            inverseJoinColumns = @JoinColumn(name = "employee_id")
+    )
+    private List<Employee> employees;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "project_id", nullable = false)
+    private Project project;
 
     public Task() {};
 
@@ -45,7 +54,6 @@ public class Task {
         this.priority = priority;
         this.dueDate = dueDate;
         this.projectId = projectId;
-        this.task = task;
     }
 
     public int getId() {
@@ -100,14 +108,6 @@ public class Task {
         this.projectId = projectId;
     }
 
-    public List<Task> getTask() {
-        return task;
-    }
-
-    public void setTask(List<Task> task) {
-        this.task = task;
-    }
-
     @Override
     public String toString() {
         return "Task{" +
@@ -118,7 +118,6 @@ public class Task {
                 ", status='" + status + '\'' +
                 ", priority='" + priority + '\'' +
                 ", projectId=" + projectId +
-                ", task=" + task +
                 '}';
     }
 }
