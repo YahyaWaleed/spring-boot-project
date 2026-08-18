@@ -29,9 +29,6 @@ public class Task {
     @Column(name = "due_date")
     private LocalDate dueDate;
 
-    @Column(name = "project_id")
-    private int projectId;
-
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "employee_task",
@@ -46,14 +43,13 @@ public class Task {
 
     public Task() {};
 
-    public Task(int id, String title, String description, String status, String priority, LocalDate dueDate, int projectId, List<Task> task) {
+    public Task(int id, String title, String description, String status, String priority, LocalDate dueDate) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.status = status;
         this.priority = priority;
         this.dueDate = dueDate;
-        this.projectId = projectId;
     }
 
     public int getId() {
@@ -100,13 +96,6 @@ public class Task {
         this.dueDate = dueDate;
     }
 
-    public int getProjectId() {
-        return projectId;
-    }
-
-    public void setProjectId(int projectId) {
-        this.projectId = projectId;
-    }
 
     @Override
     public String toString() {
@@ -117,7 +106,6 @@ public class Task {
                 ", description='" + description + '\'' +
                 ", status='" + status + '\'' +
                 ", priority='" + priority + '\'' +
-                ", projectId=" + projectId +
                 '}';
     }
 }

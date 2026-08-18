@@ -26,9 +26,6 @@ public class Employee {
     @JoinColumn(name = "department_id")
     private Department department;
 
-    @ManyToOne
-    @JoinColumn(name = "manager_id")
-    private Project project;
 
     @ManyToMany(mappedBy = "employees", fetch = FetchType.LAZY)
     private List<Task> tasks;
