@@ -41,7 +41,7 @@ public class Project {
 
     public Project() {};
 
-    public Project(int id, String name, String description, LocalDate startDate, LocalDate endDate, List<Employee> employees, Task task) {
+    public Project(int id, String name, String description, LocalDate startDate, LocalDate endDate, List<Employee> employees) {
         this.id = id;
         this.name = name;
         this.description = description;
