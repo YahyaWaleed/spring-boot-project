@@ -43,13 +43,15 @@ public class Task {
 
     public Task() {};
 
-    public Task(int id, String title, String description, String status, String priority, LocalDate dueDate) {
+    public Task(int id, String title, String description, String status, String priority, LocalDate dueDate, Project project, List<Employee> employees) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.status = status;
         this.priority = priority;
         this.dueDate = dueDate;
+        this.project = project;
+        this.employees = employees;
     }
 
     public int getId() {
@@ -96,6 +98,21 @@ public class Task {
         this.dueDate = dueDate;
     }
 
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
 
     @Override
     public String toString() {

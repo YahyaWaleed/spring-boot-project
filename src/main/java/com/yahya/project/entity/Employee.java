@@ -34,11 +34,12 @@ public class Employee {
     public Employee() {};
 
     // constructor
-    public Employee(int id, String name, String email, String role) {
+    public Employee(int id, String name, String email, String role, Department department) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.role = role;
+        this.department = department;
     }
 
     // getters and setters
@@ -71,6 +72,13 @@ public class Employee {
         this.role = role;
     }
 
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 
     // toStting method
 

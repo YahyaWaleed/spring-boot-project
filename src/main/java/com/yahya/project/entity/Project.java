@@ -28,8 +28,8 @@ public class Project {
     private LocalDate  endDate;
 
     // one-to-many mapping with the employee
-    @OneToMany(mappedBy = "project")
-    private List<Employee> employees;
+//    @OneToMany(mappedBy = "project_id")
+//    private List<Employee> employees;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "manager_id", nullable = false)
@@ -41,13 +41,13 @@ public class Project {
 
     public Project() {};
 
-    public Project(int id, String name, String description, LocalDate startDate, LocalDate endDate, List<Employee> employees) {
+    public Project(int id, String name, String description, LocalDate startDate, LocalDate endDate, Employee manager) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.employees = employees;
+        this.manager = manager;
     }
 
     public int getId() {
@@ -86,14 +86,13 @@ public class Project {
         this.endDate = endDate;
     }
 
-    public List<Employee> getEmployees() {
-        return employees;
+    public Employee getManager() {
+        return manager;
     }
 
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
+    public void setManager(Employee manager) {
+        this.manager = manager;
     }
-
 
     @Override
     public String toString() {
@@ -103,7 +102,7 @@ public class Project {
                 ", description='" + description + '\'' +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
-                ", employees=" + employees +
+//                ", employees=" + employees +
                 '}';
     }
 }
