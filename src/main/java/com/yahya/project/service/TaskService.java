@@ -111,7 +111,7 @@ public class TaskService {
         // find task with the given Id
         Task task = taskRepository.findById(taskId).orElseThrow(() -> new EntityNotFoundException("Task ID entered is invalid"));
         // find employees with given IDs
-        List<Employee> employees = new ArrayList<>(assignEmployeeRequest.getEmployeesId().stream().map(id -> employeeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Employee with this ID is not found" + id))).toList());
+        List<Employee> employees = new ArrayList<>(assignEmployeeRequest.getEmployeesId().stream().map(id -> employeeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Employee with this ID is not found "  + id))).toList());
         // set employees to task
         task.setEmployees(employees);
         // save the task updates
@@ -130,6 +130,19 @@ public class TaskService {
         taskRepository.save(task);
 
         return toTaskResponse(task);
+
+    }
+
+    // function to return the list of tasks for a given employee
+    public List<TaskResponse> getTasksByEmployeeId(int employeeId) {
+        // check that employee id exists
+        if (!employeeRepository.existsById(employeeId)) {
+            throw new EntityNotFoundException("Employee with this ID does not exist - " + employeeId);
+        }
+
+        // get list of  tasks for the employee
+       return taskRepository.findAll().stream().filter(task -> task.getEmployees().stream().anyMatch(emp -> emp.getId() == employeeId)).map(this::toTaskResponse).toList();
+
 
     }
 
