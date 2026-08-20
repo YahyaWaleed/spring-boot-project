@@ -39,7 +39,7 @@ public class ProjectService {
 
     // create new project
     public ProjectResponse createProject(ProjectRequest projectRequest) {
-        Employee manager = employeeRepository.findById(projectRequest.getManagerId()).orElseThrow(() -> new EntityNotFoundException("Project with this ID is not found"));
+        Employee manager = employeeRepository.findById(projectRequest.getManagerId()).orElseThrow(() -> new EntityNotFoundException("Manager with this ID is not found"));
         Project project = new Project();
 
         project.setName(projectRequest.getName());
@@ -74,7 +74,7 @@ public class ProjectService {
     // update a project
     public ProjectResponse updateProjectById(Integer id, ProjectRequest projectRequest) {
         Project project = projectRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Project with this ID is not found"));
-        Employee manager = employeeRepository.findById(projectRequest.getManagerId()).orElseThrow(() -> new EntityNotFoundException("Project with this ID is not found"));
+        Employee manager = employeeRepository.findById(projectRequest.getManagerId()).orElseThrow(() -> new EntityNotFoundException("Manager with this ID is not found"));
 
 
         project.setManager(manager);

@@ -37,7 +37,7 @@ public class EmployeeService {
 
     // create new employee
     public EmployeeResponse createEmployee(EmployeeRequest employeeRequest) {
-       Department department = departmentRepository.findById(employeeRequest.getDepartmentId()).orElseThrow(() -> new EntityNotFoundException("Employee with this ID is not found"));
+       Department department = departmentRepository.findById(employeeRequest.getDepartmentId()).orElseThrow(() -> new EntityNotFoundException("Department with this ID is not found"));
 
        Employee employee = new Employee();
        employee.setName(employeeRequest.getName());
@@ -63,7 +63,7 @@ public class EmployeeService {
 
     // update one employee
     public EmployeeResponse updateEmployeeById(Integer id, EmployeeRequest employeeRequest) {
-        Employee employee = employeeRepository.findById(id).orElseThrow();
+        Employee employee = employeeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Employee with this ID is not found"));
         Department department = departmentRepository.findById(employeeRequest.getDepartmentId()).orElseThrow(() -> new EntityNotFoundException("Department not found with id: " + employeeRequest.getDepartmentId()));
 
         employee.setDepartment(department);

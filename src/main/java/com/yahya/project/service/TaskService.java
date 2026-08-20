@@ -53,7 +53,7 @@ public class TaskService {
     // create new task
     public TaskResponse createTask(TaskRequest taskRequest) {
 
-        Project project = projectRepository.findById(taskRequest.getProjectId()).orElseThrow(() -> new EntityNotFoundException("Task with this ID is not found"));
+        Project project = projectRepository.findById(taskRequest.getProjectId()).orElseThrow(() -> new EntityNotFoundException("Project with this ID is not found"));
         Task task = new Task();
 
         task.setTitle(taskRequest.getTitle());
@@ -89,7 +89,7 @@ public class TaskService {
     // update a project
     public TaskResponse updateTaskById(Integer id, TaskRequest taskRequest) {
         Task task = taskRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Task with this ID is not found"));
-        Project project = projectRepository.findById(taskRequest.getProjectId()).orElseThrow(() -> new EntityNotFoundException("Task with this ID is not found"));
+        Project project = projectRepository.findById(taskRequest.getProjectId()).orElseThrow(() -> new EntityNotFoundException("Project with this ID is not found"));
 
 
         task.setProject(project);
