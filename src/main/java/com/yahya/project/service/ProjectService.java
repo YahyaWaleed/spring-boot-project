@@ -8,7 +8,7 @@ import com.yahya.project.entity.Project;
 import com.yahya.project.repository.DepartmentRepository;
 import com.yahya.project.repository.EmployeeRepository;
 import com.yahya.project.repository.ProjectRepository;
-import jakarta.persistence.EntityNotFoundException;
+import com.yahya.project.exception.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

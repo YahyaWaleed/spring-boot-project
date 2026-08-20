@@ -4,7 +4,7 @@ import com.yahya.project.dto.DepartmentRequest;
 import com.yahya.project.dto.DepartmentResponse;
 import com.yahya.project.entity.Department;
 import com.yahya.project.repository.DepartmentRepository;
-import jakarta.persistence.EntityNotFoundException;
+import com.yahya.project.exception.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
