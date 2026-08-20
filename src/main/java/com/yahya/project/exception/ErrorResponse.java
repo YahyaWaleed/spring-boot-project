@@ -1,20 +1,21 @@
 package com.yahya.project.exception;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class ErrorResponse {
 
-    private LocalDate timestamp;
+    private LocalDateTime timestamp;
     private String message;
     private  int  statusCode;
 
     ErrorResponse(int statusCode, String message) {
-        this.timestamp = LocalDate.now();
+        this.timestamp = LocalDateTime.now();
         this.statusCode = statusCode;
         this.message = message;
     }
 
-    public LocalDate getTimestamp() {
+    public LocalDateTime getTimestamp() {
         return timestamp;
     }
 

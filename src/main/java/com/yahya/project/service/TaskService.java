@@ -53,7 +53,7 @@ public class TaskService {
     // create new task
     public TaskResponse createTask(TaskRequest taskRequest) {
 
-        Project project = projectRepository.findById(taskRequest.getProjectId()).orElseThrow();
+        Project project = projectRepository.findById(taskRequest.getProjectId()).orElseThrow(() -> new EntityNotFoundException("Task with this ID is not found"));
         Task task = new Task();
 
         task.setTitle(taskRequest.getTitle());
@@ -75,7 +75,7 @@ public class TaskService {
 
     // get one task
     public TaskResponse getTaskById(Integer id) {
-        return toTaskResponse(taskRepository.findById(id).orElseThrow());
+        return toTaskResponse(taskRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Task with this ID is not found")));
     }
 
     // delete a task
@@ -88,8 +88,8 @@ public class TaskService {
 
     // update a project
     public TaskResponse updateTaskById(Integer id, TaskRequest taskRequest) {
-        Task task = taskRepository.findById(id).orElseThrow();
-        Project project = projectRepository.findById(taskRequest.getProjectId()).orElseThrow();
+        Task task = taskRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Task with this ID is not found"));
+        Project project = projectRepository.findById(taskRequest.getProjectId()).orElseThrow(() -> new EntityNotFoundException("Task with this ID is not found"));
 
 
         task.setProject(project);
