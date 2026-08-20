@@ -1,5 +1,6 @@
 package com.yahya.project.service;
 
+import com.sun.jdi.request.InvalidRequestStateException;
 import com.yahya.project.dto.*;
 import com.yahya.project.entity.Employee;
 import com.yahya.project.entity.Project;
@@ -59,7 +60,11 @@ public class TaskService {
 
         task.setTitle(taskRequest.getTitle());
         task.setDescription(taskRequest.getDescription());
-        task.setDueDate(taskRequest.getDueDate());
+
+       if (taskRequest.getDueDate().isBefore(project.getStartDate())) {
+           throw new InvalidRequestStateException("Cannot make task due date before the project's start date");
+       } else { task.setDueDate(taskRequest.getDueDate());}
+
         task.setPriority(taskRequest.getPriority());
         task.setStatus(taskRequest.getStatus());
         task.setProject(project);
@@ -87,7 +92,7 @@ public class TaskService {
         taskRepository.deleteById(id);
     }
 
-    // update a project
+    // update a task
     public TaskResponse updateTaskById(Integer id, TaskRequest taskRequest) {
         Task task = taskRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Task with this ID is not found"));
         Project project = projectRepository.findById(taskRequest.getProjectId()).orElseThrow(() -> new EntityNotFoundException("Project with this ID is not found"));
@@ -96,7 +101,11 @@ public class TaskService {
         task.setProject(project);
         task.setTitle(taskRequest.getTitle());
         task.setDescription(taskRequest.getDescription());
-        task.setDueDate(taskRequest.getDueDate());
+
+        if (taskRequest.getDueDate().isBefore(project.getStartDate())) {
+            throw new InvalidRequestStateException("Cannot make task due date before the project's start date");
+        } else { task.setDueDate(taskRequest.getDueDate());}
+
         task.setStatus(taskRequest.getStatus());
         task.setPriority(taskRequest.getPriority());
 

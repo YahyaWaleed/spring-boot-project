@@ -1,6 +1,8 @@
 package com.yahya.project.dto;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
 public class ProjectResponse {
 
@@ -11,6 +13,7 @@ public class ProjectResponse {
     private LocalDate endDate;
     private Integer managerId;
     private String managerName;
+    Optional<List<TaskResponse>> tasks;
 
     public Integer getId() {
         return id;
