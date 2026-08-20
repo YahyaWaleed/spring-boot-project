@@ -4,6 +4,7 @@ import com.yahya.project.dto.DepartmentRequest;
 import com.yahya.project.dto.DepartmentResponse;
 import com.yahya.project.service.DepartmentService;
 import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class DepartmentController {
     }
 
     @PostMapping
-    public DepartmentResponse createDepartment(@RequestBody DepartmentRequest departmentRequest){
+    public DepartmentResponse createDepartment(@Valid @RequestBody DepartmentRequest departmentRequest){
         return departmentService.createDepartment(departmentRequest);
     }
 
@@ -38,7 +39,7 @@ public class DepartmentController {
     }
 
     @PutMapping("/{id}")
-    public DepartmentResponse updateDepartment(@PathVariable Integer id, @RequestBody DepartmentRequest departmentRequest) {
+    public DepartmentResponse updateDepartment(@PathVariable Integer id,@Valid @RequestBody DepartmentRequest departmentRequest) {
         return departmentService.updateDepartmentById(id, departmentRequest);
     }
 }

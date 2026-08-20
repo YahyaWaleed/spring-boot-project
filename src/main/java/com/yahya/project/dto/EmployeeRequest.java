@@ -15,7 +15,7 @@ public class EmployeeRequest {
     private String email;
 
     @NotNull(message = "Department ID cannot be null")
-    private int departmentId;
+    private Integer departmentId;
 
     public String getName() {
         return name;
@@ -41,11 +41,11 @@ public class EmployeeRequest {
         this.email = email;
     }
 
-    public int getDepartmentId() {
+    public Integer getDepartmentId() {
         return departmentId;
     }
 
-    public void setDepartmentId(int departmentId) {
+    public void setDepartmentId(Integer departmentId) {
         this.departmentId = departmentId;
     }
 }

@@ -6,6 +6,7 @@ import com.yahya.project.dto.ProjectRequest;
 import com.yahya.project.dto.ProjectResponse;
 import com.yahya.project.service.EmployeeService;
 import com.yahya.project.service.ProjectService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,12 +38,12 @@ public class ProjectController {
     }
 
     @PutMapping("/{id}")
-    public ProjectResponse updateProjectById(@PathVariable Integer id, @RequestBody ProjectRequest projectRequest) {
+    public ProjectResponse updateProjectById(@PathVariable Integer id, @Valid @RequestBody ProjectRequest projectRequest) {
         return projectService.updateProjectById(id, projectRequest);
     }
 
     @PostMapping
-    public ProjectResponse createEmployee(@RequestBody ProjectRequest projectRequest) {
+    public ProjectResponse createEmployee(@Valid @RequestBody ProjectRequest projectRequest) {
         return projectService.createProject(projectRequest);
     }
 

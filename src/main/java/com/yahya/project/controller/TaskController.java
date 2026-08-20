@@ -6,6 +6,7 @@ import com.yahya.project.dto.TaskRequest;
 import com.yahya.project.dto.TaskResponse;
 import com.yahya.project.service.ProjectService;
 import com.yahya.project.service.TaskService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,12 +38,12 @@ public class TaskController {
     }
 
     @PutMapping("/{id}")
-    public TaskResponse updateTaskById(@PathVariable Integer id, @RequestBody TaskRequest taskRequest) {
+    public TaskResponse updateTaskById(@PathVariable Integer id, @Valid @RequestBody TaskRequest taskRequest) {
         return taskService.updateTaskById(id, taskRequest);
     }
 
     @PostMapping
-    public TaskResponse createTask(@RequestBody TaskRequest taskRequest) {
+    public TaskResponse createTask(@Valid  @RequestBody TaskRequest taskRequest) {
         return taskService.createTask(taskRequest);
     }
 }

@@ -4,6 +4,7 @@ import com.yahya.project.dto.EmployeeRequest;
 import com.yahya.project.dto.EmployeeResponse;
 import com.yahya.project.service.DepartmentService;
 import com.yahya.project.service.EmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,12 +35,12 @@ public class EmployeeController {
     }
 
     @PutMapping("/{id}")
-    public EmployeeResponse updateEmployeeById(@PathVariable Integer id,  @RequestBody EmployeeRequest employeeRequest) {
+    public EmployeeResponse updateEmployeeById(@PathVariable Integer id, @Valid @RequestBody EmployeeRequest employeeRequest) {
         return employeeService.updateEmployeeById(id, employeeRequest);
     }
 
     @PostMapping
-    public EmployeeResponse createEmployee(@RequestBody EmployeeRequest employeeRequest) {
+    public EmployeeResponse createEmployee(@Valid @RequestBody EmployeeRequest employeeRequest) {
         return employeeService.createEmployee(employeeRequest);
     }
 }
