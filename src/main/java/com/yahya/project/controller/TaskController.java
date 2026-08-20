@@ -55,8 +55,5 @@ public class TaskController {
         return taskService.updateTaskStatus(id, taskStatusRequest);
     }
 
-    @GetMapping("/{id}/tasks")
-    public List<TaskResponse> getTasksByEmployeeId(@PathVariable int id) {
-        return taskService.getTasksByEmployeeId(id);
-    }
+
 }
