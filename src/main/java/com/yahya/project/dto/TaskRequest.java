@@ -24,7 +24,7 @@ public class TaskRequest {
     @NotNull(message = "Project ID cannot be null")
     private Integer projectId;
 
-    @NotBlank(message = "Project Name cannot be blank")
+
     private String projectName;
 
     public String getTitle() {
@@ -63,13 +63,13 @@ public class TaskRequest {
         return dueDate;
     }
 
-    public String getProjectName() {
-        return projectName;
-    }
-
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
-    }
+//    public String getProjectName() {
+//        return projectName;
+//    }
+//
+//    public void setProjectName(String projectName) {
+//        this.projectName = projectName;
+//    }
 
     public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;

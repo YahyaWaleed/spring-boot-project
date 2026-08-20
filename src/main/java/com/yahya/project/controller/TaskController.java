@@ -1,9 +1,6 @@
 package com.yahya.project.controller;
 
-import com.yahya.project.dto.ProjectRequest;
-import com.yahya.project.dto.ProjectResponse;
-import com.yahya.project.dto.TaskRequest;
-import com.yahya.project.dto.TaskResponse;
+import com.yahya.project.dto.*;
 import com.yahya.project.service.ProjectService;
 import com.yahya.project.service.TaskService;
 import jakarta.validation.Valid;
@@ -45,5 +42,10 @@ public class TaskController {
     @PostMapping
     public TaskResponse createTask(@Valid  @RequestBody TaskRequest taskRequest) {
         return taskService.createTask(taskRequest);
+    }
+
+    @PutMapping("/{id}/assign")
+    public TaskResponse assignEmployees(@PathVariable Integer id, @Valid @RequestBody AssignEmployeeRequest assignEmployeeRequest) {
+        return taskService.assignEmployees(id, assignEmployeeRequest);
     }
 }

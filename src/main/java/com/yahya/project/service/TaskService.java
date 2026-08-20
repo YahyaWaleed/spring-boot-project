@@ -105,6 +105,20 @@ public class TaskService {
         return toTaskResponse(task);
     }
 
+    // assign employees to tasks
+    public TaskResponse assignEmployees(Integer taskId, AssignEmployeeRequest assignEmployeeRequest) {
+        // find task with the given Id
+        Task task = taskRepository.findById(taskId).orElseThrow(() -> new EntityNotFoundException("Task ID entered is invalid"));
+        // find employees with given IDs
+        List<Employee> employees = assignEmployeeRequest.getEmployeesId().stream().map(id -> employeeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Employee with this ID is not found" + id))).toList();
+        // set employees to task
+        task.setEmployees(employees);
+        // save the task updates
+        taskRepository.save(task);
+
+        return toTaskResponse(task);
+    }
+
 }
 
 
