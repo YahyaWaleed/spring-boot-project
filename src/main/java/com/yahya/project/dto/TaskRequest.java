@@ -1,14 +1,30 @@
 package com.yahya.project.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDate;
 
 public class TaskRequest {
+    @NotBlank(message = "Task title cannot be blank")
     private String title;
+
+    @NotBlank(message = "Task Status cannot be blank")
     private String status;
+
+    @NotBlank(message = "Task Description cannot be blank")
     private String description;
+
+    @NotBlank(message = "Task priority cannot be blank")
     private String priority;
+
+    @NotNull(message = "Task must have a due date")
     private LocalDate dueDate;
+
+    @NotNull(message = "Project ID cannot be null")
     private int projectId;
+
+    @NotBlank(message = "Project Name cannot be blank")
     private String projectName;
 
     public String getTitle() {

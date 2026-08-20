@@ -1,12 +1,23 @@
 package com.yahya.project.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDate;
 
 public class ProjectRequest {
+    @NotBlank(message = "Project name cannot be blank")
     private String name;
+
+    @NotBlank(message = "Project description cannot be blank")
     private String description;
+
+    @NotNull(message = "Project Start Date cannot be null")
     private LocalDate startDate;
+
     private LocalDate endDate;
+
+    @NotNull(message = "Manager ID cannot be null")
     private Integer managerId;
 
     public String getName() {

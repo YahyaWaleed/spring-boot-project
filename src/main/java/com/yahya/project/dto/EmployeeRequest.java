@@ -1,9 +1,20 @@
 package com.yahya.project.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class EmployeeRequest {
+    @NotBlank(message = "Name cannot be blank")
     private String name;
+
+    @NotBlank(message = "Role cannot be blank")
     private String role;
+
+    @Email(message = "Enter a valid Email")  // ensures that the input is email
     private String email;
+
+    @NotNull(message = "Department ID cannot be null")
     private int departmentId;
 
     public String getName() {
