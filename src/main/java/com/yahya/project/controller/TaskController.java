@@ -48,4 +48,10 @@ public class TaskController {
     public TaskResponse assignEmployees(@PathVariable Integer id, @Valid @RequestBody AssignEmployeeRequest assignEmployeeRequest) {
         return taskService.assignEmployees(id, assignEmployeeRequest);
     }
+
+    // to update only the status of a task
+    @PatchMapping("/{id}/status")
+    public TaskResponse updateTaskStatus(@PathVariable Integer id, @Valid @RequestBody TaskStatusRequest taskStatusRequest) {
+        return taskService.updateTaskStatus(id, taskStatusRequest);
+    }
 }

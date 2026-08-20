@@ -10,6 +10,7 @@ import com.yahya.project.repository.TaskRepository;
 import com.yahya.project.exception.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -110,13 +111,26 @@ public class TaskService {
         // find task with the given Id
         Task task = taskRepository.findById(taskId).orElseThrow(() -> new EntityNotFoundException("Task ID entered is invalid"));
         // find employees with given IDs
-        List<Employee> employees = assignEmployeeRequest.getEmployeesId().stream().map(id -> employeeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Employee with this ID is not found" + id))).toList();
+        List<Employee> employees = new ArrayList<>(assignEmployeeRequest.getEmployeesId().stream().map(id -> employeeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Employee with this ID is not found" + id))).toList());
         // set employees to task
         task.setEmployees(employees);
         // save the task updates
         taskRepository.save(task);
 
         return toTaskResponse(task);
+    }
+
+    // update the status of a task
+    public TaskResponse updateTaskStatus(Integer taskID, TaskStatusRequest taskStatusRequest) {
+        // find task with given id
+        Task task = taskRepository.findById(taskID).orElseThrow(() -> new EntityNotFoundException("Task with this ID does not exist - " + taskID));
+        // update task status
+        task.setStatus(taskStatusRequest.getStatus());
+        // save task updates
+        taskRepository.save(task);
+
+        return toTaskResponse(task);
+
     }
 
 }
