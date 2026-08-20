@@ -1,10 +1,11 @@
 package com.yahya.project.service;
 
-import com.sun.jdi.request.InvalidRequestStateException;
+
 import com.yahya.project.dto.*;
 import com.yahya.project.entity.Employee;
 import com.yahya.project.entity.Project;
 import com.yahya.project.entity.Task;
+import com.yahya.project.exception.InvalidRequestException;
 import com.yahya.project.repository.EmployeeRepository;
 import com.yahya.project.repository.ProjectRepository;
 import com.yahya.project.repository.TaskRepository;
@@ -62,7 +63,7 @@ public class TaskService {
         task.setDescription(taskRequest.getDescription());
 
        if (taskRequest.getDueDate().isBefore(project.getStartDate())) {
-           throw new InvalidRequestStateException("Cannot make task due date before the project's start date");
+           throw new InvalidRequestException("Cannot make task due date before the project's start date");
        } else { task.setDueDate(taskRequest.getDueDate());}
 
         task.setPriority(taskRequest.getPriority());
@@ -103,7 +104,7 @@ public class TaskService {
         task.setDescription(taskRequest.getDescription());
 
         if (taskRequest.getDueDate().isBefore(project.getStartDate())) {
-            throw new InvalidRequestStateException("Cannot make task due date before the project's start date");
+            throw new InvalidRequestException("Cannot make task due date before the project's start date");
         } else { task.setDueDate(taskRequest.getDueDate());}
 
         task.setStatus(taskRequest.getStatus());

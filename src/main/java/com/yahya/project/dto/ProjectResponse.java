@@ -13,7 +13,7 @@ public class ProjectResponse {
     private LocalDate endDate;
     private Integer managerId;
     private String managerName;
-    Optional<List<TaskResponse>> tasks;
+//    List<TaskResponse> tasks;
 
     public Integer getId() {
         return id;
@@ -42,6 +42,14 @@ public class ProjectResponse {
     public LocalDate getStartDate() {
         return startDate;
     }
+
+//    public List<TaskResponse> getTasks() {
+//        return tasks;
+//    }
+//
+//    public void setTasks(List<TaskResponse> tasks) {
+//        this.tasks = tasks;
+//    }
 
     public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
